@@ -90,3 +90,4 @@ export default function SearchBasicExample({ csvData, handleFilteredData }): JSX
         </div>
     );
 }
+
