@@ -1,17 +1,13 @@
 'use client';
-
 import Head from 'next/head';
 import React, { useState, useEffect } from 'react';
-import '@/lib/env';
 
-import ArrowLink from '@/components/links/ArrowLink';
-import ButtonLink from '@/components/links/ButtonLink';
-import UnderlineLink from '@/components/links/UnderlineLink';
-import UnstyledLink from '@/components/links/UnstyledLink';
 import BookGrid from '@/app/components/book_grid';
 import SearchBasicExample from '@/app/components/search_bar';
 
 import Papa from 'papaparse';
+
+import '@/lib/env';
 
 /**
  * SVGR Support
@@ -50,7 +46,7 @@ export default function HomePage() {
             const parsedData = Papa.parse(csvData, {
                 header: true,
                 delimiter: ',',
-                complete: function(results) {
+                complete: function(results:any) {
                     // Set the state with the parsed CSV data
                     setCsvData(results.data);
                 }
@@ -66,7 +62,7 @@ export default function HomePage() {
         readAndParseCSV();
     }, []); // Empty dependency array ensures the effect runs only once when the component mounts
 
-  const handleFilteredData = (data) => {
+  const handleFilteredData = (data:any) => {
     setFilteredData(data);
     // You can further process the received data here
   };

@@ -33,13 +33,22 @@ function searchFor<T extends Record<string, string>>(booksDetail: T[], toSearch:
     return results;
 }
 
-export default function SearchBasicExample({ csvData, handleFilteredData }): JSX.Element {
+interface Book {
+    [key: string]: any; // You can refine this to include specific fields, if known.
+}
+
+interface Props {
+    csvData: Book[];
+    handleFilteredData: any;
+}
+
+export default function SearchBasicExample({ csvData, handleFilteredData }: Props): JSX.Element {
 
     // State to manage the value of the input
     const [searchText, setSearchText] = useState('');
 
     // Event handler to update the search text
-    const handleInputChange = (event) => {
+    const handleInputChange = (event: any) => {
         setSearchText(event.target.value);
     };
 

@@ -2,12 +2,19 @@ import React, { useState  } from 'react';
 
 import '@/styles/colors.css';
 
-export default function BookGrid({ csvData }) {
+interface Book {
+    [key: string]: any; // You can refine this to include specific fields, if known.
+}
+
+interface Props {
+    csvData: Book[];
+}
+export default function BookGrid({ csvData }: Props) {
 
     const itemsPerPage = 15; // Number of items to display per page
 
     const [currentPage, setCurrentPage] = useState(1); // Current page number
-    const handleClick = (book) => {
+    const handleClick = (book: Book)  => {
         const bookUrl = `/books/ebooks/${book["Epub.No"]}.epub`;
         // Create a temporary link element
         const link = document.createElement('a');
@@ -26,8 +33,7 @@ export default function BookGrid({ csvData }) {
     return (
         <>
             <div className="grid grid-cols-3 gap-4">
-                {/* Map over csvData to render each book */}
-                {csvData.slice(startIndex, endIndex).map((book, index) => (
+                {csvData.slice(startIndex, endIndex).map((book: Book, index: number) => (
                     <button
                         key={index}
                         className="border border-gray-400 lg:border-l lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-l lg:rounded-r p-4 flex flex-col leading-normal text-left h-1000 hover:bg-blue-300"
