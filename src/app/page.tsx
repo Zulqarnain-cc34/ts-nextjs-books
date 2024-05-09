@@ -48,6 +48,7 @@ export default function HomePage() {
                 delimiter: ',',
                 complete: function(results:any) {
                     // Set the state with the parsed CSV data
+                    results.data.pop()
                     setCsvData(results.data);
                 }
             }); // Assuming the first row contains headers
